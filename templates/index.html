@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,
+    chrome=1" />
+    <meta name="viewport" content="width=device-width,
+    minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js">
+    </script>
+</head>
+<body>
+    <h1>今日抽查人员：</h1>
+    <form action="/index/" method="post">
+        {% csrf_token %}
+        木木组抽查人数:<br>
+        <input type="text" name="mumuzu"/><br><br>
+        佳佳组抽查人数:<br>
+        <input type="text" name="jiajiazu"/><br><br>
+        绾绾组抽查人数:<br>
+        <input type="text" name="wanwanzu"/><br><br>
+        <input type="submit" value="提交" style="width:100px;height:40px" />
+    </form>
+
+    <h1>今日抽查名单：</h1>
+    <table border="1">
+        <thead>
+            <th>昵称</th>
+        </thead>
+        <tbody>
+            {% for line in data1 %}
+            <tr>
+                <td>{{ line.title }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>联盟列表：</h1>
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>昵称</th>
+            <th>所属分组</th>
+            <th>未交次数</th>
+            <th>是否抽查</th>
+        </thead>
+        <tbody>
+            {% for line in data %}
+            <tr>
+                <td>{{ line.pk }}</td>
+                <td>{{ line.title }}</td>
+                <td>{{ line.fenzu }}</td>
+                <td>{{ line.content }}</td>
+                <td>{{ line.shifouchoucha }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
